@@ -1,9 +1,16 @@
 # space-flight-neat
+
+### Instructions
+
+Run the main.py file in the same folder as the asset folder to begin simulation.
+Run the SaveLoadDisplay.py file to load an exported .pkl file.
+
 ## SOFCO - Project 2 (EN)
 
 ### Defining the idea behind my implementation
 
-In this project, I've decided to implement neuroevolutionary algorithms for my own game. It is a simple 2D game set in space and the goal is to fly the spaceship as far as possible and avoid the approaching asteroids. There are currently 3 observations on the input layer of the neural network - the position of the artificial intelligence-controlled rocket on the y-axis, the changing distance of the nearest (relative to the rocket) moving asteroid on the x-axis and the position of the asteroid on the y-axis. Originally, the intention was to fully configure the neural network using the NEAT library. This is still possible, however, I further apply the softmax activation function on the output layer of the neural network from NEAT, in order to normalize the output values and to determine the probability of selected action - flight up, down, and stay in place. The NEAT neural network otherwise uses the ReLu activation function for each layer, as specified in the configuration file.
+In this project, I've decided to implement neuroevolutionary algorithms for my own game. It is a simple 2D game set in space and the goal is to fly the spaceship as far as possible and avoid the approaching asteroids. There are currently 3 observations on the input layer of the neural network - the position of the artificial intelligence-controlled rocket on the y-axis, the changing distance of the nearest (relative to the rocket) moving asteroid on the x-axis and the position of the asteroid on the y-axis. Originally, the intention was to fully configure the neural network using the NEAT library. 
+This is still possible, however, I further apply the softmax activation function on the output layer of the neural network from NEAT, in order to normalize the output values and to determine the probability of selected action - flight up, down, and stay in place. The NEAT neural network otherwise uses the ReLu activation function for each layer, as specified in the configuration file.
 
 The genetic structure is managed by the NEAT library, where individual parameters can be changed in the configuration file.
 
@@ -50,7 +57,8 @@ End of simulation condition - Fitness value exceeds 2000.
 
 ### Vymezení problému řešení a navržení genetické struktury
 
-V tomto projektu jsem se rozhodl na implementaci neuroevolučních algoritmů pro vlastní hru. Jde o jednoduchou 2D hru zasazenou do vesmíru a cílem je vesmírnou lodí proletět co nejdále a vyhnout se přibližujícím se asteroidům. Na vstupní vrstvě neuronové sítě jsou aktuálně 3 pozorování - pozice umělou inteligencí ovládané rakety na ose y, měnící se vzdálenost nejbližšího (vůči raketě) pohybujícího se asteroidu na ose x a pozice asteroidu na ose y. Původně bylo záměrem konfigurovat neuronovou síť čistě pomocí knihovny NEAT. To je stále možné, avšak na výstupní vrstvu neuronové sítě z NEATu, která má všechny vrstvy propojeny aktivační funkci ReLu, dále aplikuji softmax aktivační funkci, za účelem normalizovat výstupní hodnoty a určit pravděpodobnost zvolené akce - let nahoru, dolů, a zůstat na místě.
+V tomto projektu jsem se rozhodl na implementaci neuroevolučních algoritmů pro vlastní hru. Jde o jednoduchou 2D hru zasazenou do vesmíru a cílem je vesmírnou lodí proletět co nejdále a vyhnout se přibližujícím se asteroidům. Na vstupní vrstvě neuronové sítě jsou aktuálně 3 pozorování - pozice umělou inteligencí ovládané rakety na ose y, měnící se vzdálenost nejbližšího (vůči raketě) pohybujícího se asteroidu na ose x a pozice asteroidu na ose y. Původně bylo záměrem konfigurovat neuronovou síť čistě pomocí knihovny NEAT. 
+To je stále možné, avšak na výstupní vrstvu neuronové sítě z NEATu, která má všechny vrstvy propojeny aktivační funkci ReLu, dále aplikuji softmax aktivační funkci, za účelem normalizovat výstupní hodnoty a určit pravděpodobnost zvolené akce - let nahoru, dolů, a zůstat na místě.
 
 O genetickou strukturu se stará knihovna NEAT, kde v konfiguraci lze nastavovat jednotlivé parametry.
 
@@ -90,3 +98,13 @@ Pravděpodobnost (a síla) mutace - různá u biasu, váh, aktivačních funkcí
 `weight_mutate_rate      = 0.8` - pravděpodobnost mutace váh
 
 Podmínka ukončení výpočtu - Fitness hodnota přesáhne 2000.
+
+
+#### Sources:
+
+https://neat-python.readthedocs.io/en/latest/neat_overview.html - NEAT documentation
+http://nn.cs.utexas.edu/downloads/papers/stanley.cec02.pdf - Efficient Evolution of Neural Network Topologies
+
+#### Inspired by:
+
+https://github.com/techwithtim/NEAT-Flappy-Bird/ - NEAT-Flappy-Bird
