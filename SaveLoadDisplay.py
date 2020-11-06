@@ -1,4 +1,17 @@
+from neat.math_util import softmax
+import pickle
 import main
+import pygame
+import time
+import os
+import random
+import neat
+import SaveLoadDisplay
+import numpy as np
+import datetime
+import torch
+from torch import log_softmax
+from torch import softmax
 
 def show(genomes, config):
     nets = []
@@ -6,7 +19,7 @@ def show(genomes, config):
     rockets = []
 
     for _, g in genomes:
-        net = main.neat.nn.FeedForwardNetwork.create(g, config)
+        net = neat.nn.FeedForwardNetwork.create(g, config)
         nets.append(net)
         rockets.append(main.Rocket(100, 200))
         g.fitness = 0
@@ -90,25 +103,15 @@ def show(genomes, config):
 
 def runSaveLoad(config_path):
 
-    config = main.neat.config.Config(main.neat.DefaultGenome, main.neat.DefaultReproduction,
-                                main.neat.DefaultSpeciesSet, main.neat.DefaultStagnation, config_path)
-    pop = main.neat.Population(config)
-    pop.add_reporter(main.neat.StdOutReporter(True))
-    stats = main.neat.StatisticsReporter()
-    pop.add_reporter(stats)
-    winner = pop.run(main.fitness, 100)
-    path = main.os.path.join("assets", "winner_.pkl")
-    with open(path, "wb") as f:
-        main.pickle.dump(winner, f)
-        f.close()
+    path = main.os.path.join("exported_pkls", "win.pkl")
 
     # Load the configuration again
-    config = main.neat.config.Config(main.neat.DefaultGenome, main.neat.DefaultReproduction, main.neat.DefaultSpeciesSet,
+    config = neat.config.Config(main.neat.DefaultGenome, main.neat.DefaultReproduction, main.neat.DefaultSpeciesSet,
                                 main.neat.DefaultStagnation, config_path)
 
     # Open the pickle file again
     with open(path, "rb") as f:
-        genome = main.pickle.load(f)
+        genome = pickle.load(f)
 
     # Create a list with the first item being the loaded genome
     genomes = [(1, genome)]
@@ -117,7 +120,7 @@ def runSaveLoad(config_path):
     show(genomes, config)
 
 
-if __name__ == "__SaveLoadDisplay__":
+if __name__ == "__main__":
     local_dir = main.os.path.dirname(__file__)
     config_path = main.os.path.join(local_dir, "config.txt")
     runSaveLoad(config_path)

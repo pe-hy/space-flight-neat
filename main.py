@@ -15,12 +15,8 @@ from torch import softmax
 
 pygame.font.init()
 
-# Velikost okna.
-
 WIDTH = 800
 HEIGHT = 600
-
-# Nahrání obrázků pomocí knihovny pygame.
 
 dirname = os.path.dirname(__file__)
 ROCKET_IMGS = [pygame.transform.scale(pygame.image.load(os.path.join("assets", "rocket1.png")), (112, 112)),
@@ -34,8 +30,6 @@ class Rocket:
     IMGS = ROCKET_IMGS
     ANIMATION_TIME = 10
 
-    # Počáteční pozice rakety.
-
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -45,8 +39,6 @@ class Rocket:
         self.height = self.y
         self.img_count = 0
         self.img = self.IMGS[0]
-
-    # Let rakety, rychlost je nastavena na zápornou hodnotu, souřadnicový systém pygame začíná z levého horního rohu.
 
     def flyup(self):
         self.velocity = -10
@@ -75,7 +67,7 @@ class Rocket:
             self.img = self.IMGS[1]
         elif self.img_count < self.ANIMATION_TIME * 3:
             self.img = self.IMGS[2]
-        elif self.img_count < self.ANIMATION_TIME * 3:
+        elif self.img_count < self.ANIMATION_TIME * 4:
             self.img = self.IMGS[1]
         elif self.img_count < self.ANIMATION_TIME * 4 + 1:
             self.img = self.IMGS[0]
@@ -266,19 +258,11 @@ def run(config_path):
     with open(path, "wb") as f:
         pickle.dump(winner, f)
         f.close()
-
-    # Load the configuration again
     config = neat.config.Config(neat.DefaultGenome, neat.DefaultReproduction, neat.DefaultSpeciesSet,
                                 neat.DefaultStagnation, config_path)
-
-    # Open the pickle file again
     with open(path, "rb") as f:
         genome = pickle.load(f)
-
-    # Create a list with the first item being the loaded genome
     genomes = [(1, genome)]
-
-    # With this genome, create the NN again
     SaveLoadDisplay.show(genomes, config)
 
 def t_softmax(x):
