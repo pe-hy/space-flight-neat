@@ -1,17 +1,6 @@
-from neat.math_util import softmax
 import pickle
 import main
-import pygame
-import time
-import os
-import random
 import neat
-import SaveLoadDisplay
-import numpy as np
-import datetime
-import torch
-from torch import log_softmax
-from torch import softmax
 
 def show(genomes, config):
     nets = []
