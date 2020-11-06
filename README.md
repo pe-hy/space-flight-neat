@@ -1,9 +1,10 @@
 # space-flight-neat
 
-### Instructions
+## Instructions
 
 Run the main.py file in the same folder as the asset folder to begin simulation.
-Run the SaveLoadDisplay.py file to load an exported .pkl file.
+
+Or run the SaveLoadDisplay.py file to load an exported .pkl file.
 
 ## SOFCO - Project 2 (EN)
 
