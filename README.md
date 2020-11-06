@@ -59,7 +59,7 @@ End of simulation condition - Fitness value exceeds 2000.
 ### Vymezení problému řešení a navržení genetické struktury
 
 V tomto projektu jsem se rozhodl na implementaci neuroevolučních algoritmů pro vlastní hru. Jde o jednoduchou 2D hru zasazenou do vesmíru a cílem je vesmírnou lodí proletět co nejdále a vyhnout se přibližujícím se asteroidům. Na vstupní vrstvě neuronové sítě jsou aktuálně 3 pozorování - pozice umělou inteligencí ovládané rakety na ose y, měnící se vzdálenost nejbližšího (vůči raketě) pohybujícího se asteroidu na ose x a pozice asteroidu na ose y. Původně bylo záměrem konfigurovat neuronovou síť čistě pomocí knihovny NEAT. 
-To je stále možné, avšak na výstupní vrstvu neuronové sítě z NEATu, která má všechny vrstvy propojeny aktivační funkci ReLu, dále aplikuji softmax aktivační funkci, za účelem normalizovat výstupní hodnoty a určit pravděpodobnost zvolené akce - let nahoru, dolů, a zůstat na místě.
+To je stále možné, avšak na výstupní vrstvu neuronové sítě z NEATu, která má všechny vrstvy propojeny aktivační funkcí ReLu, dále aplikuji softmax aktivační funkci za účelem normalizovat výstupní hodnoty a určit pravděpodobnost zvolené akce - let nahoru, dolů, a zůstat na místě.
 
 O genetickou strukturu se stará knihovna NEAT, kde v konfiguraci lze nastavovat jednotlivé parametry.
 
