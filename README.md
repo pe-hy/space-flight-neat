@@ -52,55 +52,6 @@ Probability (and strength) of mutation - different for bias, weights, activation
 
 End of simulation condition - Fitness value exceeds 2000.
 
-
-# space-flight-neat
-## SOFCO - Projekt 2 (CZ)
-
-### Vymezení problému řešení a navržení genetické struktury
-
-V tomto projektu jsem se rozhodl na implementaci neuroevolučních algoritmů pro vlastní hru. Jde o jednoduchou 2D hru zasazenou do vesmíru a cílem je vesmírnou lodí proletět co nejdále a vyhnout se přibližujícím se asteroidům. Na vstupní vrstvě neuronové sítě jsou aktuálně 3 pozorování - pozice umělou inteligencí ovládané rakety na ose y, měnící se vzdálenost nejbližšího (vůči raketě) pohybujícího se asteroidu na ose x a pozice asteroidu na ose y. Původně bylo záměrem konfigurovat neuronovou síť čistě pomocí knihovny NEAT. 
-To je stále možné, avšak na výstupní vrstvu neuronové sítě z NEATu, která má všechny vrstvy propojeny aktivační funkcí ReLu, dále aplikuji softmax aktivační funkci za účelem normalizovat výstupní hodnoty a určit pravděpodobnost zvolené akce - let nahoru, dolů, a zůstat na místě.
-
-O genetickou strukturu se stará knihovna NEAT, kde v konfiguraci lze nastavovat jednotlivé parametry.
-
-Na projektu budu dále pracovat a pokusím se v budoucnu algoritmus generalizovat tak, aby umělá inteligence zvládla překonat prostředí s více asteroidy, náhodně měnící se rychlostí asteroidů atp.
-
-### Ohodnocení jedinců
-
-Fitness se inicializuje s hodnotou 0. Za každý krok (timestep), dokud je jedinec naživu (tzn. nedostane se mimo okno nebo nenarazí do asteroidu), se přičítá hodnota 0.1. Pokud narazí nebo se dostane mimo okno, odečte se 5. Pokud se dostane za asteroid, přičte se 0.5. 
-
-`fitness_criterion = max` - vyhodnocení fitness na základě nejvyšší dosažené hodnoty jedince.
-
-`fitness_threshold = 2000` - hodnota fitness, kdy ukončujeme simulaci (proces učení).
-
-### Operátor křížení
-
-Není triviální, jelikož algoritmus NEAT mění topologii sítě. V jednom z vědeckých článků[(1)](http://nn.cs.utexas.edu/downloads/papers/stanley.cec02.pdf) o NEAT popisují vlastnost, kdy křížení probíhá na základě historických značení uzlů a jejich inkrementovaného identifikačního čísla dle stáří. V implementaci této knihovny je popis následovný: 
-Uzly, které jsou odvozeny od společného předka (které jsou homologní), jsou porovnány pro křížení a jejich propojení budou shodná, pokud mají uzly, které spojují, společný původ (společného předka).  [(2)](https://neat-python.readthedocs.io/en/latest/neat_overview.html)
-
-### Operátor mutace
-
-Opět není triviální, topologie sítě taktéž může mutovat a vytvářet nová spojení a uzly. Nové generace vznikají na základě fitness hodnoty a mutace nejlepších jedinců. Jelikož strukturní mutace a např. mutace vedoucí k aktualizovaným váhovým hodnotám může způsobovat problémy, kdy výsledek se dlouhodobě může jevit jako kladný, tak krátkodobě může vykazovat záporné výsledky. Algoritmus NEAT toto řeší tak, že rozděluje jedince na druhy, které mají nejkratší genetickou vzdálenost. Tyto skupinky druhů spolu poté soupeří v simulaci.
-
-### Nastavení parametrů
-
-Velikost populace - `pop_size = 200`
-
-Pravděpodobnost (a síla) mutace - různá u biasu, váh, aktivačních funkcí, uzlů.
-
-`bias_mutate_power      = 0.5` - síla mutace biasu
-
-`bias_mutate_rate        = 0.6` - pravděpodobnost mutace biasu
-
-`activation_mutate_rate  = 0.0` - pravděpodobnost mutace aktivační funkce
-
-`weight_mutate_power     = 0.5` - síla mutace váh
-
-`weight_mutate_rate      = 0.8` - pravděpodobnost mutace váh
-
-Podmínka ukončení výpočtu - Fitness hodnota přesáhne 2000.
-
-
 #### Sources:
 
 https://neat-python.readthedocs.io/en/latest/neat_overview.html - NEAT documentation
