@@ -1,5 +1,7 @@
 # space-flight-neat
 
+This was an assignment created during the course Basics of Softcomputing during my Bc. studies at University of Ostrava.
+
 ## Instructions
 
 Run the main.py file in the same folder as the asset folder to begin simulation.
@@ -14,8 +16,6 @@ In this project, I've decided to implement a neuroevolutionary algorithm for my 
 This is still possible, however, I further apply the softmax activation function on the output layer of the neural network from NEAT, in order to normalize the output values and to determine the probability of selected action - flight up, down, and stay in place. The NEAT neural network otherwise uses the ReLu activation function for each layer, as specified in the configuration file.
 
 The genetic structure is managed by the NEAT library, where individual parameters can be changed in the configuration file.
-
-I will continue to work on the project and try to generalize the algorithm in the future so that the artificial intelligence can surpass an environment with more asteroids, environment with randomly changing speeds of asteroids, etc.
 
 ### Evaluation of individuals
 
